@@ -1,58 +1,105 @@
-<!-- <!DOCTYPE HTML>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>PhoneGap</title>
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-</head>
-<body>
-<h1>Hello World</h1>
-</body>
-</html> -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Guess the Number</title>
+<script type="text/javascript">
+var source = "";
+var text = "";
+var times = 0;
+	function addANumber(x)
+	{
+		if(text.length >= 4)
+		{
+			text="";
+		}
+		
+		text += x;
+		document.getElementById('text1').value = text;
+		
+		if(text.length >= 4)
+		{
+			var a = 0;
+			var b = 0;
+			for (var i = 0; i < 4; i++)
+			{
+				if(text.charAt(i) == source.charAt(i))
+				{
+					a++;
+				}
+				else if(source.search(text.charAt(i)) != -1)
+				{
+					b++;
+				}
+			}
+			document.getElementById('text2').value = (a + "A" + b + "B");
+			times ++;
+			if(a >= 4)
+			{
+				alert("You tried :" + times + " times.");
+				initNumber();
+				times = 0;
+			}
+		}
+		return;
+	}
+	
+	function initNumber()
+	{
+		source = "";
+		for (var i = 0; i < 4; i++)
+		{   
+			var a="";
+			while(true)
+			{
+				var a = parseInt(9 * Math.random());
+				if(source.search(a) == -1)
+					break;
+			}
+			source += a;
+		}
+	}
+	
+	function showSource()
+	{
+		alert(source);
+	}
+   
+</script>
 
-<!DOCTYPE HTML>  
-  
-<html>  
-  
-  <head>  
-  
-    <meta name="viewport" content="width=320; user-scalable=no" />  
-  
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">  
-  
-    <title>PhoneGap</title>  
-  
-              <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>          
-  
-              <script type="text/javascript" charset="utf-8">  
-  
-              var displayHello = function() {   
-  
-                        var name =      document.getElementById("firstname").value;   
-  
-                        navigator.notification.alert("Hello " + name);
-  
-            }   
-  
-   </script>  
-  
-  </head>  
-  
-  <body onload="init();" id="bdy" >  
-  
-            <div id="txt">  
-  
-            <input   type="text" name="firstname" id="firstname" />  
-  
-            </div>  
-  
-            <div id ="btn">  
-  
-    <a href="#" class="btn" onclick="displayHello();">Say Hello</a>  
-  
-            </div>  
-  
-        </div>  
-  
-  </body>  
-  
-</html> 
+</head>
+
+<body onload="initNumber()">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p align="center"><input name="text1" id="text1" type="text" maxlength="4" />&nbsp;</p>
+<p>&nbsp;</p>
+<p align="center"><input name="text2" id="text2" type="text" maxlength="4" />&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p align="center">
+  <input type="submit" name="02" id="02" value="ShowSource" onclick="showSource()" style="width:100px; height:40px;"/>
+</p>
+<p>&nbsp;</p>
+<p align="center">
+  <input type="submit" name="0" id="0" value="0" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="1" id="1" value="1" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="2" id="2" value="2" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="3" id="3" value="3" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="4" id="4" value="4" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+</p>
+ <p align="center">
+  <input type="submit" name="5" id="5" value="5" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="6" id="6" value="6" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="7" id="7" value="7" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="8" id="8" value="8" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+  <input type="submit" name="9" id="9" value="9" onClick="addANumber(this.id)" style="width:80px; height:40px;"/>
+</p>
+</body>
+</html>
